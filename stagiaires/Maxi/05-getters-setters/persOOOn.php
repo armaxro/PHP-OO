@@ -41,6 +41,9 @@ class PersOOOn {
             $this->setEspecePerso($species2);
             // setter pour le nom
             #
+            $this->setNomPerso($name);
+            $this->setXpPerso(0);
+            $this->setHpPerso(100);
         }
 
         /*
@@ -69,6 +72,13 @@ class PersOOOn {
         // setter de $nomPerso (protection + 3 à 16 caractères)
         public function setNomPerso(string $nom): void
         {
+            $nom = trim(strip_tags($nom));
+            $nomlongue = strlen($nom);
+            if(strlen($nom) < 3){    
+                throw new Exception("Le nom est trop court !", 334);
+            }elseif(strlen($nom) > 16){    
+                throw new Exception("Le nom est trop long !", 335);
+            }
             $this->nomPerso = $nom;
         }
 
@@ -88,7 +98,7 @@ class PersOOOn {
             if($hp === false || $hp >= 0){
                 $this->hpPerso = $hp;
             }else{
-                throw new Exception("Hp ne peut pas être négatif ou égal à false !", 333);
+                throw new Exception("Hp ne peut pas être négatif ou égal à true !", 333);
             }
         }   
 
